@@ -1,0 +1,53 @@
+﻿@model DemoAzureStorage.Models.ImageInfoViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                </ul>
+            </div>
+            <div style="padding-left: 600px;
+                margin-top: -380px;">
+
+                <h2>Image Information</h2>
+
+                <h3>Caption : </h3> <p style="color:green"> @Model.Description.Captions[0].Text </p>
+                <h3>Height :   </h3><p style="color:green"> @Model.Metadata.Height</p>
+                <h3>Width :   </h3><p style="color:green"> @Model.Metadata.Width</p>
+                <h3>Format :  </h3><p style="color:green"> @Model.Metadata.Format</p>
+                <h3>Possible Tags :  </h3><p style="color:green"> @String.Join(", ", Model.Description.Tags.ToArray())</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
